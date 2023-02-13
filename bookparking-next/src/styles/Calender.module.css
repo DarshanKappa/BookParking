@@ -1,0 +1,31 @@
+.boxStyle {
+    box-shadow: 1px 1px 11px -4px black;
+    /* border: 1px solid #c1c1c1; */
+    border-radius: 15px;
+    background-color: white;
+}
+
+.styling_shade {
+    color: #7e57c2;
+}
+
+.current_months_date {
+    color: black;
+}
+
+.not_current_months_date {
+    color: #a5a5a5;
+}
+
+.day_sunday {
+    color: tomato
+}
+
+.day_saturday {
+    color: #8f4bcf
+}
+
+.day_today {
+    background-color: #7e57c2;
+    color: white;
+}

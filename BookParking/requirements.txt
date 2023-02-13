@@ -1,0 +1,5 @@
+django
+djangorestframework
+pydantic
+django-celery-beat
+redis
