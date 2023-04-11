@@ -2,6 +2,7 @@ from pydantic import BaseModel, validator
 from user.models import User
 from django.core.validators import validate_email
 from django.core.exceptions import ValidationError
+from typing import Any, Dict, Optional, Tuple
 
 
 class RegistrationValidation(BaseModel):
@@ -46,7 +47,8 @@ class RegistrationValidation(BaseModel):
         extra = 'forbid'
 
 class CredentialValidation(BaseModel):
-    username: str
+    email: Optional[str] = None
+    username: Optional[str] = None
     password: str
     
     class Config:

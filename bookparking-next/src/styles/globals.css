@@ -104,7 +104,7 @@ a {
 
 * {
   box-sizing: border-box;
-  text-align: center;
+  /* text-align: center; */
 }
 
 :root {

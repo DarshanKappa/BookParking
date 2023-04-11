@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Box, Paper, Stack, Typography, Button, IconButton } from "@mui/material";
 import Input from "../Inputs/Input";
 import PersonIcon from '@mui/icons-material/Person';
@@ -7,6 +7,11 @@ import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useForm } from "react-hook-form";
 import CustomForm from "./components/CustomForm";
+import { SnackContext } from "contexts/SnackBarContext";
+import axios from "axios";
+import { useCookies } from "react-cookie";
+import { signin, signup } from "api_collection/api";
+import { useRouter } from "next/router";
 
 
 const signupForm = [
@@ -94,12 +99,77 @@ const Forms = {
 
 function SignUpLogIn({ formType }) {
 
-  const [formData, setFormData] = useState()
+  const [formData, setFormData] = useState();
+  const { function: raiseSnackMessage } = useContext(SnackContext);
+  const [ cookies, setCookies ] = useCookies();
+  const router = useRouter();
 
-  const onSubmit = (data)=>{
-    
+  const onSubmit = (data, step, total_steps)=>{
+    // At SignUp
+    if(formType==="signup"){
+
+      // Final Submition
+      if(step===total_steps){
+
+        const res = (res) => {
+          if(res.status === 201){
+              let token = res.data.access_token
+              let expiry = res.data.access_token_lifetime
+              console.log(expiry)
+              setCookies("token", token, { path: "/", maxAge: Number(expiry) })
+              router.push("/")
+              raiseSnackMessage("success", "Successfully Loged In")
+          }else{
+              raiseSnackMessage("warning", JSON.stringify(res.data))
+          }
+        }
+
+        const catch_error = (e)=>{
+          raiseSnackMessage("warning", JSON.stringify(e.response.data))
+        }
+
+        signup(data, res, catch_error)
+        
+      }else{
+
+      }
+
+      return step
+    }
+
+    // At LogIn
+    if(formType==="login"){
+
+      const res = (res)=>{
+                    if(res.status === 200){
+                        let token = res.data.access_token
+                        let expiry = res.data.access_token_lifetime
+                        console.log(expiry)
+                        setCookies("token", token, { path: "/", maxAge: Number(expiry) })
+                        router.push("/")
+                        raiseSnackMessage("success", "Successfully Loged In")
+                    }else{
+                        raiseSnackMessage("warning", JSON.stringify(res.data));
+                    }
+                  }
+
+      const catch_error = (e)=>{
+                            raiseSnackMessage("warning", JSON.stringify(e.response.data));
+                          }
+
+      // Calling Signup API and return access token
+      signin({email: data.email, password: data.password}, res, catch_error)
+
+    }
   }
 
+  const push_to_login = ()=>{
+    router.push('/auth/login')
+  }
+
+  const push_to_signup = ()=>{
+    router.push('/auth/signup')
+  }
 
 	return ( 
 		<Paper sx={{minHeight: "70vh", px: 3, py: 5, width: {xm: 800, sm: 580, md: 850, lg: 1000}, boxShadow: "4px 3px 20px -7px gray", borderRadius: 8}}>
@@ -117,9 +187,22 @@ function SignUpLogIn({ formType }) {
         
         <Box sx={{width: "50%", display: "flex", flexDirection: "column", paddingX: 2}}>
           <Box sx={{mb: 3}}>
-            <Typography width={40} height={35} variant="h4">{formType==="singup"?"Singup":"Login"}</Typography>
+            <Typography width={40} height={35} variant="h4">{formType==="signup"?"Signup":"Login"}</Typography>
           </Box>
-          <CustomForm setValue={onSubmit} form={Forms[formType]} />
+          <CustomForm form_type={formType} setValue={onSubmit} form={Forms[formType]} />
+
+          <Box sx={{textAlign: "left", color: "gray", mt: 10}}>
+            {
+              formType==="signup"?
+                <Typography variant="span" color="inherit">If you have already account  
+                  <Typography variant="span" color="blue" sx={{cursor: "pointer"}} onClick={push_to_login}> Login</Typography>
+                </Typography>
+              :
+                <Typography variant="span" color="inherit">If you are not registerd
+                  <Typography variant="span" color="blue" sx={{cursor: "pointer"}} onClick={push_to_signup}> SingUp</Typography>
+                </Typography>
+            }
+          </Box>
         </Box>
 
 		  </Stack>

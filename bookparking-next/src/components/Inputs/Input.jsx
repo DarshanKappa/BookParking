@@ -36,9 +36,10 @@ function Input({ key, type, icon, label, sx={}, field_name, register=()=>{}, req
                         }}
                     key={key}
                     type={type}
+                    name={field_name}
                     placeholder={label}
                     {...register(field_name)}
-                    required={required} 
+                    required={required}
                 />
             </Box>
         </>

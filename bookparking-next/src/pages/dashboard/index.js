@@ -1,18 +1,29 @@
 import DashboardBox from "@/components/dashboard/DashboardBox";
 import { Box, Stack } from "@mui/material";
 import styles from "@/styles/Dashboard.module.css";
-
+import SideBar from "@/components/SideBar/SideBar";
+import SideBarComponent from "@/components/SideBar/SideComp";
+import { useEffect } from "react";
+import { useCookies } from "react-cookie";
+import { useRouter } from "next/router";
 
 function DashBoard({  }) {
+
+  const router = useRouter();
+  const [ cookies, setCookies ] = useCookies();
+
+  useEffect(() => {
+    if(!cookies.token)
+    router.push("/auth/login")
+  })
+  
+
     return ( 
-      <Stack className={styles.dashboardPage} sx={{}}>
-        <Stack className={styles.navBox} sx={{width: "25%", m: 1, my: 2}}>
-          Navigation
-        </Stack>
-        <Stack className={styles.dashBox} sx={{width: "100%", m: 2, ml: 1}}>
+      <>
+        <SideBarComponent>
           <DashboardBox />
-        </Stack>
-      </Stack>
+        </SideBarComponent>
+      </>
      );
 }
 

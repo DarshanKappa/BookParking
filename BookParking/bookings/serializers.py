@@ -49,8 +49,8 @@ class UserBookingSerializer(serializers.ModelSerializer):
     def get_slot(self, obj):
         return obj.slot.slot_no
 
-    def to_internal_value(self, data):
-        
+    def to_internal_value(self, data):        
+
         is_valid, data = pydantic_validation(CreateUserBooking, data)
         if not is_valid:
             raise serializers.ValidationError(data)
@@ -68,7 +68,7 @@ class UserBookingSerializer(serializers.ModelSerializer):
         user = self.context.get("request").user
         _data |= {"user": user}
 
-        _data |= {"status": UsersBookings.Status.BOOKED}
+        _data |= {"status": UsersBookings.Status.PENDING}
     
         _data |= {"vehicle_no": data.pop("vehicle_no")}
         
@@ -86,8 +86,42 @@ class UserBookingSerializer(serializers.ModelSerializer):
 
 
     def validate(self, attrs):
-
         return attrs
+    
+    # def save(self, **kwargs):
+    #     data = self.validated_data
+        
+    #     if(type(data)==list):
+    #         self.instance = self.bulk_create(data)
+    #         return self.instance
+    #     else:
+    #         self.instance = self.create(data)
+    #         return self.instance
+    
+    # def bulk_create(self, validated_data):
+    #     bulk_data = []
+    #     for i in validated_data:
+    #         bulk_data.append(UsersBookings(**i))
+    #     UsersBookings.objects.bulk_create
+    #     objs = UsersBookings.objects.create(bulk_data)
+    #     for i in objs:
+    #         print('-========================')
+    #         print(i, i.id)
+    #     return objs
+    
+    
+class SlotBoardSerializer(serializers.Serializer):
+    
+    
+    
+    class Meta:
+        fields = (
+            "slot_no",
+            "date",
+            "time_slots",
+        )
+
+
 
 
 

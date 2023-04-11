@@ -1,0 +1,224 @@
+{
+    "entries": [
+        {
+            "id": 1, 
+            "API": "AdoptAPet",
+            "Description": "Resource to help get pets adopted",
+            "Auth": "apiKey",
+            "HTTPS": true,
+            "Cors": "yes",
+            "Link": "https://www.adoptapet.com/public/apis/pet_list.html",
+            "Category": "Animals"
+        },
+        {
+            "id": 2, 
+            "API": "Axolotl",
+            "Description": "Collection of axolotl pictures and facts",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "no",
+            "Link": "https://theaxolotlapi.netlify.app/",
+            "Category": "Animals"
+        },
+        {
+            "id": 3, 
+            "API": "Cat Facts",
+            "Description": "Daily cat facts",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "no",
+            "Link": "https://alexwohlbruck.github.io/cat-facts/",
+            "Category": "Animals"
+        },
+        {
+            "id": 4, 
+            "API": "Cataas",
+            "Description": "Cat as a service (cats pictures and gifs)",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "no",
+            "Link": "https://cataas.com/",
+            "Category": "Animals"
+        },
+        {
+            "id": 5, 
+            "API": "Cats",
+            "Description": "Pictures of cats from Tumblr",
+            "Auth": "apiKey",
+            "HTTPS": true,
+            "Cors": "no",
+            "Link": "https://docs.thecatapi.com/",
+            "Category": "Animals"
+        },
+        {
+            "id": 6, 
+            "API": "Dog Facts",
+            "Description": "Random dog facts",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "yes",
+            "Link": "https://dukengn.github.io/Dog-facts-API/",
+            "Category": "Animals"
+        },
+        {
+            "id": 7, 
+            "API": "Dog Facts",
+            "Description": "Random facts of Dogs",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "yes",
+            "Link": "https://kinduff.github.io/dog-api/",
+            "Category": "Animals"
+        },
+        {
+            "id": 8, 
+            "API": "Dogs",
+            "Description": "Based on the Stanford Dogs Dataset",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "yes",
+            "Link": "https://dog.ceo/dog-api/",
+            "Category": "Animals"
+        },
+        {
+            "id": 9, 
+            "API": "eBird",
+            "Description": "Retrieve recent or notable birding observations within a region",
+            "Auth": "apiKey",
+            "HTTPS": true,
+            "Cors": "no",
+            "Link": "https://documenter.getpostman.com/view/664302/S1ENwy59",
+            "Category": "Animals"
+        },
+        {
+            "id": 10, 
+            "API": "FishWatch",
+            "Description": "Information and pictures about individual fish species",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "yes",
+            "Link": "https://www.fishwatch.gov/developers",
+            "Category": "Animals"
+        },
+        {
+            "id": 11, 
+            "API": "HTTP Cat",
+            "Description": "Cat for every HTTP Status",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "yes",
+            "Link": "https://http.cat/",
+            "Category": "Animals"
+        },
+        {
+            "id": 12, 
+            "API": "HTTP Dog",
+            "Description": "Dogs for every HTTP response status code",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "yes",
+            "Link": "https://http.dog/",
+            "Category": "Animals"
+        },
+        {
+            "id": 13, 
+            "API": "IUCN",
+            "Description": "IUCN Red List of Threatened Species",
+            "Auth": "apiKey",
+            "HTTPS": false,
+            "Cors": "no",
+            "Link": "http://apiv3.iucnredlist.org/api/v3/docs",
+            "Category": "Animals"
+        },
+        {
+            "id": 14, 
+            "API": "MeowFacts",
+            "Description": "Get random cat facts",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "no",
+            "Link": "https://github.com/wh-iterabb-it/meowfacts",
+            "Category": "Animals"
+        },
+        {
+            "id": 15, 
+            "API": "Movebank",
+            "Description": "Movement and Migration data of animals",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "yes",
+            "Link": "https://github.com/movebank/movebank-api-doc",
+            "Category": "Animals"
+        },
+        {
+            "id": 16, 
+            "API": "Petfinder",
+            "Description": "Petfinder is dedicated to helping pets find homes, another resource to get pets adopted",
+            "Auth": "apiKey",
+            "HTTPS": true,
+            "Cors": "yes",
+            "Link": "https://www.petfinder.com/developers/",
+            "Category": "Animals"
+        },
+        {
+            "id": 17, 
+            "API": "PlaceBear",
+            "Description": "Placeholder bear pictures",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "yes",
+            "Link": "https://placebear.com/",
+            "Category": "Animals"
+        },
+        {
+            "id": 18, 
+            "API": "PlaceDog",
+            "Description": "Placeholder Dog pictures",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "yes",
+            "Link": "https://place.dog",
+            "Category": "Animals"
+        },
+        {
+            "id": 19, 
+            "API": "PlaceKitten",
+            "Description": "Placeholder Kitten pictures",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "yes",
+            "Link": "https://placekitten.com/",
+            "Category": "Animals"
+        },
+        {
+            "id": 20, 
+            "API": "RandomDog",
+            "Description": "Random pictures of dogs",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "yes",
+            "Link": "https://random.dog/woof.json",
+            "Category": "Animals"
+        },
+        {
+            "id": 21, 
+            "API": "RandomDuck",
+            "Description": "Random pictures of ducks",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "no",
+            "Link": "https://random-d.uk/api",
+            "Category": "Animals"
+        },
+        {
+            "id": 22, 
+            "API": "RandomFox",
+            "Description": "Random pictures of foxes",
+            "Auth": "",
+            "HTTPS": true,
+            "Cors": "no",
+            "Link": "https://randomfox.ca/floof/",
+            "Category": "Animals"
+        }
+    ]
+}

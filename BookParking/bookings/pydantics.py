@@ -45,7 +45,7 @@ class CreateUserBooking(BaseModel):
         slot = UsersBookings.objects.filter(slot=slot_no, status__in=[UsersBookings.Status.USING, UsersBookings.Status.BOOKED]) \
                                     .filter(Q(slot_expiry__gt=slot_open) & Q(slot_opening__lt=expiry))
         if slot:
-            raise ValueError("this entire slot is not Fee")
+            raise ValueError("this period of slot is not Fee")
         return expiry
 
     @validator("vehicle_no", pre=False)

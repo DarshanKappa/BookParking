@@ -24,31 +24,27 @@ function DashboardBox({  }) {
 							</Stack>
 					</Stack>
 
-					<Stack justifyContent="space-between" className={styles.paper} sx={{position: "relative", color: "#222222", bgcolor: "#c5cae9", height: 100, my: 3, p: 2}}>
-							<Box sx={{position: "absolute", right: "127px", bottom: "-47px", width: "190px", height: "265px"}}>
+					<Stack justifyContent="space-between" className={styles.paper} sx={{position: "relative", color: "#222222", bgcolor: "#c5cae9", height: 150, my: 3, p: 2}}>
+							<Box sx={{position: "absolute", right: {xs: "3%", sm: "3%", md: "4%", lg:"6%"}, bottom: {xs: "-30px", sm: "-30px", md: "-30px", lg:"-40px"}, height: {xs: "150px", sm: "170px", md: "200px", lg:"230px"}}}>
 									<img src="/parking3.webp" style={{ height: "inherit"}} />
 							</Box>
-							<Stack sx={{textAlign: "left", fontSize: 20}}>Hello, Darshan</Stack>
+							<Stack sx={{textAlign: "left", mb: 2, fontSize: 20}}>Hello, Darshan</Stack>
 							<Stack sx={{textAlign: "left" }}>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo, amet.</Stack>
 					</Stack>
 
-					<Stack sx={{flexDirection: "row", justifyContent: "space-around", width: "100%"}}>
-							<Box>
-									<FeeBlockedParkingChart sx={{ boxShadow: "1px 1px 11px -4px black", borderRadius: "15px", bgcolor: "white" }} />
+					<Stack sx={{flexDirection: "row", justifyContent: "space-around", width: "100%", flexWrap: "wrap"}}>
+							<Box my={3} mx={1}>
+								<FeeBlockedParkingChart sx={{ boxShadow: "1px 1px 11px -4px black", borderRadius: "15px", bgcolor: "white" }} />
 							</Box>
 
-							<Box>
-										<BookCalender sx={{}} />
-								</Box>
+							<Box my={3} mx={1}>
+								<BookCalender sx={{}} />
+							</Box>
 
-								<Box>
-										<BookingHistory sx={{ width: 370, height: 430 }} />
-								</Box>
-						</Stack>
-
-
-
-
+							<Box my={3} mx={1}>
+								<BookingHistory sx={{ width: 370, height: 430 }} />
+							</Box>
+					</Stack>
 				</>
 		 );
 }

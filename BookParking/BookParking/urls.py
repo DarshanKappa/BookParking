@@ -16,10 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from bookings.views import Test
+from bookings.views import PaymentView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include("user.urls")),
+    path('api/auth/', include("user.urls")),
     path('api/', include("bookings.urls")),
-    path('api/test', Test.as_view(), name="test")
+    path('api/test', Test.as_view(), name="test"),
+    
+    
+    
+    path('payments/', include("payments.urls")),
 ]

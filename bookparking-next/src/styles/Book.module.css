@@ -1,0 +1,13 @@
+
+
+.row {
+    place-items: center;
+    border-top: 1px solid;
+    /* border-style: dashed; */
+    border-color: #cfcfcf;
+    justify-content: center;
+}
+
+.book_slot {
+    height: 90%;
+}

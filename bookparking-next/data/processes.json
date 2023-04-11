@@ -1,0 +1,24 @@
+[
+	{
+		"baseProducts": [
+			{
+				"_id": "63e9d563f89787d0540782a2",
+				"baseProductName": "Bidding Module"
+			}
+		],
+		"processName": "Rates & Pricing Process"
+	},
+	{
+		"baseProducts": [
+			{
+				"_id": "63e36331cc367343dd6cc374",
+				"baseProductName": "DASH"
+			},
+			{
+				"_id": "63e49080c97235ccc6782393",
+				"baseProductName": "SAAS"
+			}
+		],
+		"processName": "Logistics Operation Process"
+	}
+]

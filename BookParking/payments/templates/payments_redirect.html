@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Parking</title>
+<style>
+    body{
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        place-items: center;
+    }
+    .box {
+        max-width: 700px;
+        width: 70%;
+        {% comment %} height: 70%; {% endcomment %}
+        box-shadow: 0px 0px 15px -7px black;
+        padding: 50px;
+    }
+    li {
+        list-style: none;
+        width: 47%;
+    }
+    .value-box {
+        display: flex;
+        justify-content: space-between;
+        margin: 20px 0;
+        
+    }
+</style>
+</head>
+<body>
+    <div class="box">
+         
+        {% if status == True %}
+            <div class="value-box">
+                <li>Status</li>
+                <li style="color: seagreen;">Success</li>
+            </div>
+        {% else %}
+            <div class="value-box">
+                <li>Status</li>
+                <li style="color: tomato;">Failed</li>
+            </div>
+        {% endif %}
+
+        <div class="value-box">
+            <li>Nane</li>
+            <li>{{name}}</li>
+        </div>
+
+        <div class="value-box">
+            <li>Amount</li>
+            <li>{{amount}} {{currency}}</li>
+        </div>
+
+        <div class="value-box">
+            <li>Tax</li>
+            <li>{{fees}} {{currency}}</li>
+        </div>
+
+        <div class="value-box">
+            <li>Phone</li>
+            <li>{{phone}}</li>
+        </div>
+        
+        <div class="value-box">
+            <li>Email</li>
+            <li>{{email}}</li>
+        </div>
+
+        <div class="value-box">
+            <li>Payment ID</li>
+            <li>{{id}}</li>
+        </div>
+
+        <div class="value-box">
+            <li>Payment By</li>
+            <li>{{instrument_type}} ({{billing_instrument}})</li>
+        </div>
+
+        <div class="value-box">
+            <li>Date Time</li>
+            <li>{{created_at}}</li>
+        </div>
+    </div>
+</body>
+</html>

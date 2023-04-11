@@ -29,6 +29,8 @@ class UsersBookings(models.Model):
         BOOKED = "BOOKED",
         USING = "USING",
         EXPIRED = "EXPIRED",
+        FAILED = "FAILED"
+        PENDING = "PENDING"
 
     created = models.DateTimeField("Booked at", auto_now_add=True)
     user = models.ForeignKey(User, null=True, blank=True, verbose_name="User", related_name="users_bookings",
@@ -41,7 +43,7 @@ class UsersBookings(models.Model):
     status = models.CharField("Status", max_length=10, choices=Status.choices)
 
     def __str__(self):
-        return f"Booking ({self.user.first_name}) - {self.status}"
+        return f"Booking ({self.user.first_name}) - slot({self.slot.slot_no}) - {self.status} - {str(self.slot_opening)} to {str(self.slot_expiry)}"
 
     class Meta:
         managed = True

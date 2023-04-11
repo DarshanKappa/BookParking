@@ -1,0 +1,23 @@
+
+.page_box {
+    padding: 16px;
+}
+
+.processBox {
+    padding: 24px;
+    height: 100vh;
+    /* margin-top: 24px; */
+    /* margin-bottom: 24px; */
+}
+
+
+.page_box2 {
+    padding: 16px;
+}
+
+.processBox2 {
+    /* padding: 24px;
+    height: 100vh; */
+    margin-top: 24px;
+    margin-bottom: 24px;
+}

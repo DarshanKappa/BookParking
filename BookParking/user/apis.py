@@ -4,6 +4,7 @@ from .pydantics import CredentialValidation, RegistrationValidation
 from .utils import generate_token, pydantic_validation
 from user.models import User
 from django.contrib import auth
+from django.db.models import Q
 
 
 class RegistrationAPIView(APIView):
@@ -24,7 +25,7 @@ class RegistrationAPIView(APIView):
         user.save()
         
         token = generate_token(user)
-        return Response({'token':token}, status=201)
+        return Response(token, status=201)
 
 class SinginAPIView(APIView):
     """
@@ -33,14 +34,24 @@ class SinginAPIView(APIView):
 
     def post(self, request, *args, **kwargs):
         data = request.data
-
+        print(data)
         is_valid, msg = pydantic_validation(CredentialValidation, data)
         if not is_valid:
             return Response(msg, status=400)
 
-        user = auth.authenticate(username=data.get('username'), password=data.get('password'))
+        user = User.objects.filter(Q(email=data.get("email")) | Q(username=data.get("username"))).first()
         if not user:
-            return Response("Wrong username or password", 401)
+            if data.get("email") is not None:
+                return Response("Wrong email or password", 401)
+            else:
+                return Response("Wrong username or password", 401)
+                
+                
+        if not user.check_password(data.get("password")):
+            if data.get("email") is not None:
+                return Response("Wrong email or password", 401)
+            else:
+                return Response("Wrong username or password", 401)
 
         token = generate_token(user)
-        return Response({'token': token})
+        return Response(token)

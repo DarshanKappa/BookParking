@@ -36,10 +36,10 @@ def update_parking_slots(self, *args, **kwargs):
         expired.status = UsersBookings.Status.EXPIRED
         update_slots.append(expired.slot_id)
         update_query_list.append(expired)
-        
+    
     for getting_slot in this_time_bookings:
         getting_slot.status = UsersBookings.Status.USING
         update_query_list.append(getting_slot)
-    
+
     ParkingSlots.objects.filter(id__in=set(update_slots)).update(status=ParkingSlots.Status.FREE)
     UsersBookings.objects.bulk_update(update_query_list, ["status", "slot"])

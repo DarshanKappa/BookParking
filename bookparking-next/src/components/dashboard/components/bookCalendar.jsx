@@ -10,20 +10,27 @@ import { ConstructionOutlined } from '@mui/icons-material';
 
 
 
-const days = [ "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+export const days = [ "SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 
-const month_String = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+export const month_String = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-const days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+export const days_in_month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
 
 
-function Calendar({ sx={} }) {
+function Calendar({ dateValue, setDateValue, monthValue, setMonthValue, yearValue, setYearValue ,sx={} }) {
 
-  	const [date, setDate] = useState(new Date());
+  	const [date, setDate] = useState(()=>{
+										if(dateValue!==undefined & monthValue!==undefined & yearValue!==undefined){
+											return new Date(yearValue, monthValue, dateValue);
+										}else{
+											return new Date();
+										}
+									});
 	const [daysArray, setDaysArray] = useState([]);
 	const [month, setMonth] = useState(date.getMonth());
 	const [year, setYear] = useState(date.getFullYear());
+	const [daydate, setDay] = useState(date.getDate());
 
 
 	// It returns days in a month
@@ -35,7 +42,9 @@ function Calendar({ sx={} }) {
 	}
 
 
+
 	useEffect(() => {
+		console.log("--------run ma9indikkkk")
 		let dateArray = []
 
 		let d = new Date(date)
@@ -57,7 +66,7 @@ function Calendar({ sx={} }) {
 			}
 		}
 		
-	//-----------------------Current Month's Dates-------------------------
+	//-----------------------Current Month's Dates---------------------setDateValue !== undefined && ----
 
 		let currentMothsdays = days_in_month_fun(d, month);
 		var current_date_data = 1;
@@ -84,7 +93,7 @@ function Calendar({ sx={} }) {
 		var date_value = date.getDate();
 		for(var i in dateArray){
 			if(dateArray[i].value === date_value && dateArray[i].dateOfMonth === 0){
-				dateArray[i] = {...dateArray[i], ...{today: true}}
+				dateArray[i] = {...dateArray[i], ...{selected_date: true}}
 			}
 		}
 	}
@@ -111,43 +120,56 @@ function Calendar({ sx={} }) {
 	// Set array in State
 		setDaysArray(tempArray)
 
-		// console.log(dateArray)
-		// console.log(tempArray)
+		yearValue === undefined && setYearValue !== undefined && setYearValue(year)
+		monthValue === undefined && setMonthValue !== undefined && setMonthValue(month)
+		dateValue === undefined && setDateValue !== undefined && setDateValue(daydate)
 
 		return () => {
 			
 		}
 	}, [month, year])
 
+	
+	// Clicked Last Month
 	const clickLastMonth = () => {
 		setMonth((m)=>{
-			// console.log("Clicked Last Month")
-			if(m===0){
-				setYear(y=>y-1)
+			if(Number(m)===0){
+				setYear(y=>Number(y)-1)
 				return 11
 			}
-			return m-1
+			return Number(m)-1
 		})
 	}
 	
+	// Clicked Next Month
 	const clickNextMonth = () => {
 		setMonth((m)=>{
-			// console.log("Clicked Next Month")
-			if(m===11){
-				setYear(y=>y+1)
+			if(Number(m)===11){
+				setYear(y=>Number(y)+1)
 				return 0
 			}
-			return m+1
+			return Number(m)+1
 		})
+	}
+
+
+	// Onclick on Date Event Handler
+	const selectDate = (day) => {
+
+		setYearValue !== undefined && setYearValue(year)
+		setMonthValue !== undefined && setMonthValue(month)
+		setDateValue !== undefined && setDateValue(day.value)
+		setDay(day.value)
+		setDate(new Date(year, month, day.value))
 	}
 
 
 	
 
   return (
-		<Stack className={styles.boxStyle} sx={{ p: 2, m: 0, bgcolor: "gainsboro", ...sx}}>
+	  <Stack className={styles.boxStyle} sx={{ p: 2, m: 0, bgcolor: "gainsboro", ...sx}}>
 			<Box sx={{display: "flex", placeItems: "center", py: 1}}>
-				<IconButton aria-label="" onClick={()=>setYear(y=>y-1)}>
+				<IconButton aria-label="" onClick={()=>setYear(y=>Number(y)-1)}>
 					<KeyboardDoubleArrowLeftIcon className={styles.styling_shade} sx={{width: "16px"}} />
 				</IconButton>
 				
@@ -162,16 +184,15 @@ function Calendar({ sx={} }) {
 					sx={{fontSize: 16,display: "flex", placeItems: "center", flexGrow: 1, justifyContent: "center"}} 
 					color="initial"
 				>
-					{/* {month_String[month]} {year} */}
-						<Box>{month_String[month]}</Box>
-						<SetYear key={year} value={year} setValue={setYear} />
+						<Box sx={{userSelect: "none"}}>{month_String[month]}</Box>
+						<SetYear sx={{userSelect: "none"}} key={year} value={year} setValue={setYear} />
 				</Typography>
 
 				<IconButton aria-label="" onClick={clickNextMonth}>
 					<KeyboardArrowRightIcon className={styles.styling_shade} sx={{width: "16px"}}/>
 				</IconButton>
 				
-				<IconButton aria-label="" onClick={()=>setYear(y=>y+1)}>
+				<IconButton aria-label="" onClick={()=>setYear(y=>Number(y)+1)}>
 					<KeyboardDoubleArrowRightIcon className={styles.styling_shade} sx={{width: "16px"}}/>
 				</IconButton>
 			</Box>
@@ -187,16 +208,16 @@ function Calendar({ sx={} }) {
 								{
 									row.map(day=>(
 										(day.dateOfMonth===0)?
-											(day.today)?
-												<IconButton key={day.dateOfMonth + day.value}  sx={{width: "14.285714286%"}} onClick={()=>{}} className={styles.day_today} ><Typography className={styles.day_today} variant="body1" sx={{}} color="initial">{day.value}</Typography></IconButton>
+											(day.selected_date)?
+												<IconButton key={day.dateOfMonth + day.value}  sx={{width: "14.285714286%"}} onClick={()=>{selectDate(day)}} className={styles.day_today} ><Typography className={styles.day_today} variant="body1" sx={{}} color="initial">{day.value}</Typography></IconButton>
 											:
 												(day.day===0)?
-													<IconButton key={day.dateOfMonth + day.value}  sx={{width: "14.285714286%"}} onClick={()=>{}}><Typography className={styles.day_sunday} variant="body1" sx={{}} color="initial">{day.value}</Typography></IconButton>
+													<IconButton key={day.dateOfMonth + day.value}  sx={{width: "14.285714286%"}} onClick={()=>{selectDate(day)}}><Typography className={styles.day_sunday} variant="body1" sx={{}} color="initial">{day.value}</Typography></IconButton>
 												:
 													(day.day===6)?
-														<IconButton key={day.dateOfMonth + day.value} sx={{width: "14.285714286%"}} onClick={()=>{}}><Typography className={styles.day_saturday} variant="body1" sx={{}} color="initial">{day.value}</Typography></IconButton>
+														<IconButton key={day.dateOfMonth + day.value} sx={{width: "14.285714286%"}} onClick={()=>{selectDate(day)}}><Typography className={styles.day_saturday} variant="body1" sx={{}} color="initial">{day.value}</Typography></IconButton>
 													:
-														<IconButton key={day.dateOfMonth + day.value}  sx={{width: "14.285714286%"}} onClick={()=>{}}><Typography className={styles.current_months_date} variant="body1" sx={{}} color="initial">{day.value}</Typography></IconButton>
+														<IconButton key={day.dateOfMonth + day.value}  sx={{width: "14.285714286%"}} onClick={()=>{selectDate(day)}}><Typography className={styles.current_months_date} variant="body1" sx={{}} color="initial">{day.value}</Typography></IconButton>
 										:
 											(day.dateOfMonth===-1)?
 												<IconButton key={day.value+"_last"}  sx={{width: "14.285714286%"}} onClick={()=>{}}><Typography className={styles.not_current_months_date} variant="body1" color="initial">{day.value}</Typography></IconButton>

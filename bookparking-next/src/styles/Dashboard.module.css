@@ -1,7 +1,7 @@
+
 .dashboardPage {
     width: 100%;
     min-height: 100vh;
-    flex-direction: row;
     background-color: #f1f1f1;
 }
 
@@ -135,3 +135,8 @@ color: #d10000;
     /* margin-left: 8px;
     margin-right: 8px; */
 }
+
+.sidebar_box {
+    margin: 10px 0;
+}
+
